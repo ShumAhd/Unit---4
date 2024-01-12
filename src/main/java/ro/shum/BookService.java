@@ -1,9 +1,12 @@
+
 package ro.shum;
 
-import java.awt.print.Book;
 import java.util.List;
 
 public class BookService {
+  public static void main(String[] args) {
+
+  }
   private final BookRepository bookRepository;
 
   public BookService(BookRepository bookRepository) {

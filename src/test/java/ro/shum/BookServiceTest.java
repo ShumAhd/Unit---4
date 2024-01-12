@@ -1,6 +1,6 @@
+
 package ro.shum;
 
-import java.awt.print.Book;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class BookServiceTest {
@@ -43,5 +44,31 @@ class BookServiceTest {
     assertEquals(expectedBooks, result);
   }
 
-  // Similar tests for addBook and deleteBook methods
+  @Test
+  void testAddBook() {
+    // Arrange
+    BookRepository bookRepository = Mockito.mock(BookRepository.class);
+    BookService bookService = new BookService(bookRepository);
+    Book newBook = new Book(3L, "New Book");
+
+    // Act
+    bookService.addBook(newBook);
+
+    // Assert
+    verify(bookRepository, Mockito.times(1)).save(newBook);
+  }
+
+  @Test
+  void testDeleteBook() {
+    // Arrange
+    BookRepository bookRepository = Mockito.mock(BookRepository.class);
+    BookService bookService = new BookService(bookRepository);
+    Long bookId = 1L;
+
+    // Act
+    bookService.deleteBook(bookId);
+
+    // Assert
+    verify(bookRepository, Mockito.times(1)).delete(bookId);
+  }
 }

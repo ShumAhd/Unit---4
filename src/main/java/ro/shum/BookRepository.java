@@ -1,6 +1,7 @@
+
 package ro.shum;
 
-import java.awt.print.Book;
+import java.util.List;
 
 public interface BookRepository {
   Book findById(Long id);
@@ -8,4 +9,3 @@ public interface BookRepository {
   void save(Book book);
   void delete(Long id);
 }
-
